@@ -1,0 +1,19 @@
+.alpha-card {
+  border: 3px solid #2563eb;
+  background: #dbeafe;
+  color: #1e3a8a;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: monospace;
+}
+.alpha-card h2 {
+  margin-top: 0;
+}
+.alpha-card button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}

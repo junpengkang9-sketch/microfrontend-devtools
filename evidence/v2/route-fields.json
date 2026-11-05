@@ -1,0 +1,12 @@
+{
+  "guard": true,
+  "alias": true,
+  "meta": "preserved",
+  "callbackPreserved": true,
+  "props": {
+    "name": "app-alpha",
+    "entry": "http://127.0.0.1:18001/?layout=qa",
+    "baseRoute": "/qa",
+    "extra": "keep"
+  }
+}

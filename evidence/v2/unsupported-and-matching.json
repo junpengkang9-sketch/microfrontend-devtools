@@ -1,0 +1,8 @@
+{
+  "unsupportedReported": true,
+  "matching": {
+    "same": true,
+    "wrongHost": false,
+    "wrongPort": false
+  }
+}

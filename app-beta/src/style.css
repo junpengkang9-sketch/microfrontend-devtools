@@ -1,0 +1,19 @@
+.beta-card {
+  border: 3px solid #ea580c;
+  background: #ffedd5;
+  color: #7c2d12;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: monospace;
+}
+.beta-card h2 {
+  margin-top: 0;
+}
+.beta-card button {
+  background: #ea580c;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}

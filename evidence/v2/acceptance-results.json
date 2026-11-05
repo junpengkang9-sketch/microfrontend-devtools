@@ -1,0 +1,74 @@
+{
+  "time": "2026-11-05T16:08:07.975Z",
+  "browser": "Ego Lite",
+  "results": [
+    {
+      "name": "both local, same page, direct deep link",
+      "status": "PASS"
+    },
+    {
+      "name": "host has no extension integration seam",
+      "status": "PASS"
+    },
+    {
+      "name": "cookie enforced by server",
+      "status": "PASS",
+      "without": 401,
+      "alpha": 200,
+      "beta": 200,
+      "hidden": true
+    },
+    {
+      "name": "alpha HMR edit 1, host and peer preserved",
+      "status": "PASS",
+      "sentinel": "stable",
+      "a": "1",
+      "b": "2"
+    },
+    {
+      "name": "alpha HMR edit 2, host and peer preserved",
+      "status": "PASS",
+      "sentinel": "stable",
+      "a": "1",
+      "b": "2"
+    },
+    {
+      "name": "beta HMR edit 1, host and peer preserved",
+      "status": "PASS",
+      "sentinel": "stable",
+      "a": "1",
+      "b": "2"
+    },
+    {
+      "name": "beta HMR edit 2, host and peer preserved",
+      "status": "PASS",
+      "sentinel": "stable",
+      "a": "1",
+      "b": "2"
+    },
+    {
+      "name": "configured path and query preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "unavailable local service falls back with status",
+      "status": "PASS"
+    },
+    {
+      "name": "per-app override off",
+      "status": "PASS"
+    },
+    {
+      "name": "global off restores online production apps",
+      "status": "PASS"
+    },
+    {
+      "name": "three unmount/remount cycles",
+      "status": "PASS"
+    },
+    {
+      "name": "refresh preserves mapping",
+      "status": "PASS"
+    }
+  ]
+}

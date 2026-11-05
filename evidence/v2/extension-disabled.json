@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "hostAssetsUnchanged": true,
+  "runtime": "undefined",
+  "a": "module origin: http://127.0.0.1:18085",
+  "b": "module origin: http://127.0.0.1:18085"
+}

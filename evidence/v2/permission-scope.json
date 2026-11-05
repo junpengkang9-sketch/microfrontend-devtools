@@ -1,0 +1,10 @@
+{
+  "origins": [
+    "http://127.0.0.1:18085/*"
+  ],
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting"
+  ]
+}

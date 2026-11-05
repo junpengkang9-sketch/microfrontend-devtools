@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MF DevTools</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="pop-header">
+      <div class="pop-title-row">
+        <span class="logo-dot"></span>
+        <span class="pop-title">MF DevTools</span>
+      </div>
+      <label class="switch-label">
+        <span class="switch">
+          <input type="checkbox" id="global-enabled" aria-label="启用本地覆盖" />
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+        </span>
+      </label>
+    </header>
+
+    <div class="pop-body">
+      <div class="status-card">
+        <div class="status-row">
+          <span class="status-label">当前页面</span>
+          <span id="current-url" class="status-value">-</span>
+        </div>
+        <div class="status-row">
+          <span class="status-label">匹配环境</span>
+          <span id="matched-env" class="badge">检测中…</span>
+        </div>
+        <div id="adapters-list" class="adapters-list"></div>
+      </div>
+
+      <button id="refresh-btn" class="ghost-btn">刷新当前页面状态</button>
+      <button id="open-options-btn" class="primary-btn">管理配置</button>
+    </div>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

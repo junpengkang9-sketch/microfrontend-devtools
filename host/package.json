@@ -1,0 +1,17 @@
+{
+  "name": "mf-devtools-host",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 18000",
+    "build": "vite build",
+    "preview": "vite preview --port 18000"
+  },
+  "dependencies": {
+    "qiankun": "2.10.9"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

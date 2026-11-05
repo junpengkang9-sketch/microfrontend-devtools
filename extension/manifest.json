@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "MF DevTools · 微前端本地调试",
+  "version": "0.3.0",
+  "description": "按环境配置线上子应用与本地入口映射，保留主应用登录态，支持已公开路由或 qiankun 加载接口的主应用。",
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "options_page": "options/options.html",
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+  "optional_host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "host_permissions": []
+}

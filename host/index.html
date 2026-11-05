@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MF DevTools Demo Host</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f1115; color: #e8e8e8; }
+      #app-shell { display: flex; flex-direction: column; min-height: 100vh; }
+      header { background: #1a1d24; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2a2d35; }
+      header h1 { font-size: 16px; margin: 0; font-weight: 600; }
+      #session-info { font-size: 12px; color: #8a8f98; }
+      nav { display: flex; gap: 8px; padding: 10px 20px; background: #15171c; border-bottom: 1px solid #2a2d35; }
+      nav a { color: #9bb8ff; text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 6px; }
+      nav a.active, nav a:hover { background: #22262f; }
+      main { flex: 1; display: flex; }
+      #login-screen { flex: 1; display: flex; align-items: center; justify-content: center; }
+      #login-box { background: #1a1d24; padding: 32px; border-radius: 10px; width: 320px; border: 1px solid #2a2d35; }
+      #login-box h2 { margin-top: 0; font-size: 16px; }
+      #login-box input { width: 100%; padding: 8px 10px; margin: 6px 0 14px; background: #0f1115; border: 1px solid #333; border-radius: 6px; color: #eee; }
+      #login-box button { width: 100%; padding: 10px; background: #4a7dfc; border: none; border-radius: 6px; color: #fff; font-weight: 600; cursor: pointer; }
+      .app-slots { flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 16px 20px; }
+      .app-slot-wrap { border: 1px dashed #333; border-radius: 8px; padding: 8px; flex: 1; display: flex; flex-direction: column; min-height: 220px; }
+      .app-slot-label { font-size: 11px; color: #6b7280; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+      .app-slot { flex: 1; background: #fff; border-radius: 6px; overflow: auto; color: #111; }
+      footer { padding: 8px 20px; font-size: 11px; color: #555; border-top: 1px solid #2a2d35; }
+    </style>
+  </head>
+  <body>
+    <div id="app-shell">
+      <header>
+        <h1>MF DevTools Demo &mdash; Simulated Online Host</h1>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div id="session-info">not signed in</div>
+          <button id="logout-btn" style="font-size:11px;padding:4px 8px;cursor:pointer">Sign out</button>
+        </div>
+      </header>
+      <nav id="main-nav" style="display:none">
+        <a href="#/alpha" data-route="/alpha">App Alpha</a>
+        <a href="#/beta" data-route="/beta">App Beta</a>
+        <a href="#/both" data-route="/both">Both (concurrent)</a>
+      </nav>
+      <main id="main-area">
+        <div id="login-screen">
+          <div id="login-box">
+            <h2>Synthetic Sign-in</h2>
+            <input id="login-user" placeholder="username" value="demo-user" />
+            <input id="login-pass" placeholder="password" type="password" value="demo-pass" />
+            <button id="login-btn">Sign in</button>
+          </div>
+        </div>
+        <div class="app-slots" id="app-slots" style="display:none">
+          <div class="app-slot-wrap" id="wrap-alpha">
+            <div class="app-slot-label">app-alpha container</div>
+            <div class="app-slot" id="container-alpha"></div>
+          </div>
+          <div class="app-slot-wrap" id="wrap-beta">
+            <div class="app-slot-label">app-beta container</div>
+            <div class="app-slot" id="container-beta"></div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        host origin: <span id="host-origin"></span> &middot; this page and its own JS/CSS always load from this origin regardless of extension overrides
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

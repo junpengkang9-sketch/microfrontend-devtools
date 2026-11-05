@@ -1,0 +1,7 @@
+{
+  "logout": {
+    "alpha": 401,
+    "beta": 401
+  },
+  "relogin": "both authenticated"
+}

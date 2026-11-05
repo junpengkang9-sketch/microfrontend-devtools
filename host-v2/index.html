@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MF DevTools Demo Host v2 (Vue Router, no extension hooks)</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f1115; color: #e8e8e8; }
+      header { background: #1a1d24; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2a2d35; }
+      header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+      nav { display: flex; gap: 8px; padding: 10px 20px; background: #15171c; border-bottom: 1px solid #2a2d35; }
+      nav a { color: #9bb8ff; text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 6px; }
+      nav a.router-link-active { background: #22262f; }
+      #login-box { max-width: 320px; margin: 60px auto; background: #1a1d24; padding: 32px; border-radius: 10px; border: 1px solid #2a2d35; }
+      #login-box input { width: 100%; padding: 8px 10px; margin: 6px 0 14px; background: #0f1115; border: 1px solid #333; border-radius: 6px; color: #eee; box-sizing: border-box; }
+      #login-box button { width: 100%; padding: 10px; background: #4a7dfc; border: none; border-radius: 6px; color: #fff; font-weight: 600; cursor: pointer; }
+      .micro-wrap { border: 1px dashed #333; border-radius: 8px; padding: 8px; margin: 12px 20px; min-height: 220px; }
+      .micro-label { font-size: 11px; color: #6b7280; margin-bottom: 6px; text-transform: uppercase; }
+      .micro-slot { background: #fff; border-radius: 6px; overflow: auto; color: #111; min-height: 200px; }
+      footer { padding: 8px 20px; font-size: 11px; color: #555; border-top: 1px solid #2a2d35; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MF DevTools · 本地调试工作台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-left">
+        <span class="logo-dot"></span>
+        <span class="topbar-title">MF DevTools</span>
+      </div>
+      <div class="topbar-right">
+        <label class="switch-label">
+          <span>启用本地覆盖</span>
+          <span class="switch">
+            <input type="checkbox" id="global-enabled" />
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+          </span>
+        </label>
+        <span id="save-status" class="save-status"></span>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <span>环境列表</span>
+          <button id="add-env-btn" class="icon-btn" title="添加环境" aria-label="添加环境">+</button>
+        </div>
+        <ul id="env-list" class="env-list"></ul>
+        <div class="sidebar-footer">
+          <button id="export-btn" class="ghost-btn">导出配置</button>
+          <label class="ghost-btn file-btn">
+            导入配置
+            <input type="file" id="import-input" accept="application/json" hidden />
+          </label>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="page-heading"><div><p class="eyebrow">WORKSPACE</p><h1>本地调试工作台</h1><p>在线上主应用里，调试你本地的代码。</p></div><button id="reload-host-btn" class="primary-btn">保存并刷新主应用</button></div>
+        <div id="validation-box" class="validation-box" hidden></div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <div class="empty-illustration">＋</div>
+          <h2>还没有配置任何环境</h2>
+          <p>一个「环境」对应一个线上主应用域名。添加后，可以在其中配置应用标识与本地调试地址的映射规则。</p>
+          <button id="empty-add-env-btn" class="primary-btn">添加第一个环境</button>
+        </div>
+
+        <div id="env-editor" class="env-editor" hidden>
+          <template id="environment-template">
+            <div class="env-card" data-env-card>
+              <div class="env-card-header">
+                <label class="env-title-row">
+                  <input type="checkbox" class="env-enabled" aria-label="启用此环境" />
+                  <input type="text" class="env-label" placeholder="环境名称，例如：测试环境" aria-label="环境名称" />
+                </label>
+                <button class="remove-env-btn" title="删除环境" aria-label="删除环境">删除</button>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">主应用地址</label>
+                <div class="origin-row">
+                  <input type="text" class="env-origin" placeholder="https://test.example.com/*" aria-label="主应用地址" />
+                  <button class="grant-permission-btn primary-btn">授权此环境</button>
+                </div>
+                <div class="row-meta">
+                  <span class="badge" data-field="permission-status">未授权</span>
+                  <span class="tab-status" data-field="tab-status">当前标签页：未检测</span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="rules-header">
+                  <label class="field-label">应用映射规则</label>
+                  <button class="add-rule-btn ghost-btn">+ 添加规则</button>
+                </div>
+                <div class="rules-table" data-rules-table>
+                  <div class="rules-table-head">
+                    <span>启用</span>
+                    <span>应用标识</span>
+                    <span>线上入口</span>
+                    <span class="arrow-col"></span>
+                    <span>本地入口</span>
+                    <span>适配器</span>
+                    <span>生效状态</span>
+                    <span></span>
+                  </div>
+                  <div class="rules-container"></div>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template id="rule-template">
+            <div class="rule-row" data-rule-row>
+              <div class="rule-card-top"><label class="rule-enable-label"><input type="checkbox" class="rule-enabled" aria-label="启用此规则" />启用映射</label><span class="rule-status" data-field="rule-status">等待应用</span><button class="remove-rule-btn icon-btn" title="删除规则" aria-label="删除规则">×</button></div>
+              <label class="rule-field rule-id-field">应用标识<input type="text" class="rule-app-identifier" placeholder="例如 app-alpha" aria-label="应用标识" /></label>
+              <label class="rule-field rule-online-field">线上子应用入口（可选）<input type="text" class="rule-online-match" placeholder="例如 /app-alpha/" aria-label="线上入口匹配" /></label>
+              <span class="arrow-col rule-arrow">→</span>
+              <label class="rule-field rule-local-field">本地入口地址<input type="text" class="rule-local-url" placeholder="http://localhost:5173/app-alpha/" aria-label="本地入口地址" /></label>
+              <label class="rule-field rule-adapter-field">接入方式<select class="rule-adapter" aria-label="适配器"><option value="auto">自动检测</option><option value="app-router">主应用路由</option><option value="exposed-qiankun">微前端接口</option></select></label>
+            </div>
+          </template>
+        </div>
+
+        <details class="help-collapsible">
+          <summary>兼容性与帮助</summary>
+          <div class="help-content">
+            <p>
+              本扩展通过运行时适配器拦截已暴露的 <code>window.APP.router</code>（Vue Router 的
+              addRoute/getRoutes，支持路由 meta 或 props 中携带 <code>{name, entry, baseRoute}</code>
+              的写法，包括 props 为静态对象、props.default 嵌套、以及 props 工厂函数）或
+              <code>window.qiankun.loadMicroApp</code>。
+            </p>
+            <p>
+              不要求主应用调用任何本扩展的 API、不要求主应用引入特殊脚本或插件标记。若页面既未暴露
+              <code>window.APP.router</code> 也未暴露 <code>window.qiankun</code>
+              （完全私有打包、无可拦截的全局对象），本扩展将如实显示“不支持”，不会静默失败或虚报生效。
+            </p>
+            <div class="status-panel">
+              <div class="status-panel-header">
+                <h3>当前标签页生效状态</h3>
+                <button id="refresh-status-btn" class="ghost-btn">刷新</button>
+              </div>
+              <pre aria-live="polite" id="status-output">尚未刷新</pre>
+            </div>
+          </div>
+        </details>
+      </main>
+    </div>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

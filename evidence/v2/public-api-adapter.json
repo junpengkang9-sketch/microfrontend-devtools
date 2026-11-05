@@ -1,0 +1,5 @@
+{
+  "alpha": "module origin: http://127.0.0.1:18001",
+  "beta": "module origin: http://127.0.0.1:18002",
+  "adapter": true
+}
